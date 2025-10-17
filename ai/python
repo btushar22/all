@@ -1,0 +1,77 @@
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client.SYIT
+
+TYSTUDENTS = [
+    {"name": "Chaitanya", "age": 22, "course": "CS"},from pymongo import MongoClient
+
+# -------------------------------
+# Connect to MongoDB
+# -------------------------------
+client = MongoClient("mongodb://localhost:27017/")
+
+# Select your database and collection
+db = client["students"]
+tyit = db["TYIT"]
+
+# -------------------------------
+# Insert multiple documents
+# -------------------------------
+tyit.insert_many([
+    {"name": "suraj", "age": 17, "course": "CS"},
+    {"name": "amit", "age": 18, "course": "IT"},
+    {"name": "ravi", "age": 19, "course": "CS"},
+    {"name": "neha", "age": 20, "course": "IT"}
+])
+print(" Documents inserted successfully!\n")
+
+# -------------------------------
+# Update one document
+# -------------------------------
+tyit.update_one(
+    {"name": "suraj"},        # filter condition
+    {"$set": {"age": 18}}     # update field
+)
+print(" Updated Suraj’s age to 18.\n")
+
+# -------------------------------
+# Update multiple documents
+# -------------------------------
+tyit.update_many(
+    {"course": "CS"}, 
+    {"$set": {"course": "Computer Science"}}
+)
+print(" Updated all 'CS' courses to 'Computer Science'.\n")
+
+# -------------------------------
+# Delete one document
+# -------------------------------
+tyit.delete_one({"name": "amit"})
+print(" Deleted Amit’s record.\n")
+
+# -------------------------------
+# Delete multiple documents
+# -------------------------------
+tyit.delete_many({"course": "IT"})
+print(" Deleted all students from 'IT' course.\n")
+
+# -------------------------------
+# Display remaining documents
+# -------------------------------
+print(" Remaining documents in TYIT collection:")
+for doc in tyit.find():
+    print(doc)
+
+# Close the connection
+client.close()
+
+    {"name": "Anushka", "age": 23, "course": "IT"},
+    {"name": "Snehal", "age": 21, "course": "ECE"}
+]
+
+result = db.TY.insert_many(TYSTUDENTS)
+print("Inserted IDs:", result.inserted_ids)
+
+
+
